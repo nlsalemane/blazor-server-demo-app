@@ -1,0 +1,43 @@
+@if (showModal)
+{
+    <ModalWindow Title="Add Device" OnClose="CloseModalWindow">
+        <ChildContent>
+            <DeviceForm operation="@operation" OnAddDevice="AddDevice" />
+        </ChildContent>
+    </ModalWindow>
+}
+
+<li class="operation-card" draggable="true">
+        <div class="rank"><span>@operation.OrderInWhichToPerform</span></div>
+        <span id="name">@operation.Name</span>
+        <span id="device" @onclick="OpenModalWindow" >@operation.Device.Name</span>
+        <div class="btns">
+            <img id="del-btn" src="/assets/svg/delete.svg" alt="garbage bin" draggable="false" @onclick="RemoveOperation">
+        </div>
+</li>
+
+@code {
+    [Parameter] public Operation operation { get; set; }
+    [Parameter] public EventCallback<int> OnRemoveOperation { get; set; }
+
+    private bool showModal { get; set; }
+
+    private void OpenModalWindow() {
+        showModal = true;
+        StateHasChanged();
+    }
+    private void CloseModalWindow (bool accepted)
+    {
+        showModal = false;
+        StateHasChanged();
+    }
+    void AddDevice (Operation op) {
+        operation = op;
+        StateHasChanged();
+        CloseModalWindow(showModal);
+    }
+
+    private Task RemoveOperation() {
+        return OnRemoveOperation.InvokeAsync(operation.OperationID);
+    }
+}

@@ -1,0 +1,28 @@
+<EditForm class="form" Model="@operation">
+    <div class="form">
+        <fieldset>
+            <label for="name">Name</label>
+            <InputText id="name" @bind-Value="operation.Device.Name"/>
+        </fieldset>
+        <fieldset>
+            <label for="type">Device Type</label>
+            <InputSelect id="type" @bind-Value="operation.Device.Type">
+            @foreach (var type in Enum.GetValues(typeof(DeviceType)))
+            {
+                <option value="@type">@type</option>
+            }
+        </InputSelect>
+        </fieldset>
+        <button @onclick="AddDevice">SAVE DEVICE</button>
+    </div>
+</EditForm>
+
+@code
+{
+    [Parameter] public Operation operation { get; set; }
+    [Parameter] public EventCallback<Operation> OnAddDevice { get; set; }
+
+    private Task AddDevice() {
+        return OnAddDevice.InvokeAsync(operation);
+    }
+}

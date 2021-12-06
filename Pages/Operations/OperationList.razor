@@ -1,0 +1,62 @@
+@if (showModal)
+{
+    <ModalWindow Title="Add Operation" OnClose="CloseModalWindow">
+        <ChildContent>
+            <OperationForm OnAddOperation="AddOperation" Ops="operations" />
+        </ChildContent>
+    </ModalWindow>
+}
+
+<button @onclick="OpenModalWindow">NEW OPERATION</button>
+
+<div class="operations-list">
+    <header>
+        <span id="step">#</span>
+        <span id="name">Operation</span>
+        <span id="device">Device</span>
+    </header>
+    <ul>
+        @foreach (var operation in operations)
+        {
+            <OperationCard operation="operation" OnRemoveOperation="RemoveOperation" />
+        }
+    </ul>
+</div>
+
+@code {
+    public IList<Operation> operations = new List<Operation>();
+
+    private Operation? newOp = new Operation
+        {
+            OperationID = 0,
+            Name = "Operation",
+            OrderInWhichToPerform = 1,
+            ImageData = null,
+            Device = null
+        };
+
+    void AddOperation (Operation newOp) {
+        Random rand = new Random();
+        newOp.OperationID = rand.Next();
+        operations.Add(newOp);
+        StateHasChanged();
+        CloseModalWindow(showModal);
+    }
+
+    void RemoveOperation(int opID) {
+        var op = operations.Single(i => i.OperationID == opID);
+        operations.Remove(op);
+    }
+
+    public bool showModal { get; set; }
+
+    private void OpenModalWindow() {
+        showModal = true;
+        StateHasChanged();
+    }
+    public void CloseModalWindow (bool accepted)
+    {
+        showModal = false;
+        StateHasChanged();
+    }
+}

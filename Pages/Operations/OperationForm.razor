@@ -1,0 +1,59 @@
+<EditForm Model="@operation">
+    <div class="form">
+        <fieldset>
+            <label for="name">Name</label>
+            <InputText id="name" @bind-Value=operation.Name />
+        </fieldset>
+        <fieldset>
+            <label for="step-number">Step #</label>
+            <InputNumber id="step-number" @bind-Value=operation.OrderInWhichToPerform />
+        </fieldset>
+        <fieldset>
+            <label for="device-type">Images</label>
+            <InputFile type="image" @bind-Value=operation.ImageData />
+        </fieldset>
+        <button @onclick="SubmitOperation">ADD OPERATION</button>
+    </div>
+</EditForm>
+
+@code {
+
+    [Parameter] public Operation operation { get; set; }
+    [Parameter] public IList<Operation> Ops { get; set; }
+
+    protected override void OnInitialized()
+    {
+        operation = new Operation
+        {
+            OperationID = 0,
+            Name = $"Operation {Ops.Count + 1}",
+            OrderInWhichToPerform = Ops.Count + 1,
+            ImageData = null,
+            Device = new Device {
+                DeviceID = new Random().Next(),
+                Name = "Unassigned",
+                Type = DeviceType.Camera
+            }
+        };
+    }
+
+    [Parameter] public EventCallback<Operation> OnAddOperation { get; set; }
+
+    private Task SubmitOperation(){
+        var temp = operation;
+        operation = new Operation
+        {
+            OperationID = 0,
+            Name = $"Operation {Ops.Count + 1}",
+            OrderInWhichToPerform = Ops.Count + 1,
+            ImageData = null,
+            Device = new Device {
+                DeviceID = new Random().Next(),
+                Name = "Unassigned",
+                Type = DeviceType.Camera
+            }
+        };
+        return OnAddOperation.InvokeAsync(temp);
+    }
+
+}

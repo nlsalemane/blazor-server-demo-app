@@ -1,0 +1,66 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(10, 10, 10, 0.65);
+}
+
+.window {
+  width: clamp(700px, 50vw, 1080px);
+  height: 55%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #e4e5ea;
+}
+
+header {
+  background-color: #005386;
+  height: 5rem;
+  display: grid;
+  grid-template-columns: auto 0.1fr 0.1fr;
+  gap: 0.8rem;
+  grid-template-areas: "title ack close";
+  align-items: center;
+}
+
+span {
+  grid-area: title;
+  display: flex;
+  align-items: center;
+  color: #fafaf9;
+  font-weight: bold;
+  font-size: 1.4rem;
+  padding: 0 2rem;
+}
+
+button {
+  height: 50%;
+  width: 5rem;
+  font-size: 1.2rem;
+  border: none;
+  outline: none;
+  color: #fafaf9;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:focus {
+  border: 2px solid #005386;
+  outline: 2px dashed #fafaf9;
+}
+
+#ack-btn {
+  grid-area: ack;
+  background-color: #1ece83;
+}
+
+#close-btn {
+  grid-area: close;
+  background-color: #b32525;
+  margin-right: 2rem;
+}

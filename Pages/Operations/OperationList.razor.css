@@ -1,0 +1,66 @@
+.operations-list {
+  width: clamp(720px, 85%, 1440px);
+}
+
+header {
+  /* position: fixed; */
+  width: 100%;
+  color: #757273;
+  margin: 1rem 0 0;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  display: grid;
+  grid-template-columns: 5rem auto 9rem 130px;
+  grid-template-areas: "step name device blank";
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  border-bottom: 2px solid #9a9698;
+}
+
+#step {
+  grid-area: step;
+  text-align: center;
+}
+
+#name {
+  grid-area: name;
+  padding: 0 1rem;
+}
+
+#device {
+  grid-area: device;
+  text-align: center;
+}
+
+ul {
+  background-color: #fafaf9;
+  padding: 1rem 0;
+  height: 650px;
+  max-height: 650px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  margin: 1rem 0 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: bolder;
+  font-size: 1rem;
+  color: #fafaf9;
+  background-color: #005386;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 10px #444a53;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+button:focus {
+  padding: 0.58rem 1.35rem;
+  outline: 2px dashed #0e1111;
+  border-radius: 0.1rem;
+  box-shadow: none;
+  border: 3px solid #e4e5ea;
+}

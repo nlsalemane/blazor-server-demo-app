@@ -1,0 +1,80 @@
+.operation-card {
+  width: 99%;
+  align-items: center;
+  height: 4rem;
+  margin-bottom: 0.175rem;
+  background-color: #fafaf9;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  display: grid;
+  grid-template-columns: 4rem auto 10rem 100px;
+  grid-template-areas: "rank name device delete";
+  cursor: grab;
+  border: 1px solid #9a9698;
+}
+
+.rank {
+  grid-area: rank;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  /* background-color: #6da7cc; */
+}
+
+.rank span {
+  font-size: 1.5rem;
+  color: #fafaf9;
+  color: #9a9698;
+}
+
+#name {
+  grid-area: name;
+  padding: 1rem 1.7rem;
+  color: #9a9698;
+  font-weight: 500;
+  text-transform: capitalize;
+  font-size: 1.2em;
+}
+
+#device {
+  grid-area: device;
+  height: 90%;
+  padding: 0 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #9a9698;
+}
+#device:hover {
+  color: #fafaf9;
+  background-color: #6da7cc;
+  cursor: pointer;
+}
+
+#name:hover {
+  color: #3e94ca;
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+.btns {
+  grid-area: delete;
+  justify-self: flex-end;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btns img {
+  margin: 0 0.75rem;
+  cursor: pointer;
+}
+
+#del-btn {
+  height: 90%;
+  background-color: rgb(224, 193, 193);
+  border-radius: 5px;
+}

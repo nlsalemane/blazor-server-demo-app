@@ -1,0 +1,36 @@
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column !important;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+header {
+  width: inherit;
+  background-color: #202836;
+  background-color: #005386;
+  height: 3.5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 clamp(100px, 10%, 10rem);
+}
+
+header a {
+  text-decoration: none;
+}
+
+header a span {
+  font-size: 1.5rem;
+  color: #fafaf9;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+main {
+  width: clamp(720px, 80%, 90vw);
+  margin: 2rem auto;
+}

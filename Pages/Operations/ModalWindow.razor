@@ -1,0 +1,24 @@
+<div class="overlay">
+    <div class="window">
+        <header>
+            <span>@Title</span>
+            <button id="close-btn" @onclick="DiscardChanges" >Cancel</button>
+        </header>
+        <section>
+            @ChildContent
+        </section>
+    </div>
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Title { get; set; }
+
+    [Parameter] public EventCallback<bool> OnClose { get; set; }
+
+    private Task DiscardChanges()
+    {
+        return OnClose.InvokeAsync(false);
+    }
+}
